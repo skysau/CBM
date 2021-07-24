@@ -340,7 +340,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\AdminController.cs" />
+=======
+>>>>>>> 740ee5b68545e3cfd82cc28549fb1ed6adb5097a
     <Compile Include="Controllers\homeController.cs" />
     <Compile Include="DAL\studentaccess.cs" />
     <Compile Include="Global.asax.cs">
@@ -368,7 +371,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Uploads\" />
+<<<<<<< HEAD
     <Folder Include="Views\Admin\" />
+=======
+>>>>>>> 740ee5b68545e3cfd82cc28549fb1ed6adb5097a
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
