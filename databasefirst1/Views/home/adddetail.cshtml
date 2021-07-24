@@ -1,0 +1,251 @@
+﻿@model databasefirst1.Models.student
+@{
+    ViewBag.Title = "adddetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var message = TempData["msg"] ?? string.Empty;
+}
+
+<nav>
+    <un>
+        <li>@Html.ActionLink("home", "index", "home")</li>
+
+        <li>@Html.ActionLink("adddetail", "adddetail", "home")</li>
+
+    </un>
+</nav>
+<script type="text/javascript">
+      var message = '@message';
+    if (message == "1")
+        alert("Record Save Successfully!");
+    else if (message == "2")
+        alert("Record Update Successfully!");
+    else if (message == "3")
+        alert("Record already Exists !");
+
+    function StudentDelete(sid) {
+        var result = confirm("Delete Selected Record No.?");
+        if (result) {
+           $.ajax({
+                url: "@Url.Action("StudentDelete", "Home")",
+                type: 'post',
+                datatype: 'json',
+               data: { sid: sid },
+               asycs: false,
+                success: function (isConfirm) {
+                alert("Your Record Deleted Successfully!");
+                location.reload();
+                 }
+             });
+        }
+    }
+    //function fileCheck(obj) {
+    //    var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+    //    if ($.inArray($(obj).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+    //        alert("Only '.jpeg','.jpg', '.png', '.gif', '.bmp' formats are allowed.");
+    //    }
+    //}
+</script>
+
+<main class="app-content">
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-edit"></i>Student</h1>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Student</li>
+            <li class="breadcrumb-item"><a href="#">Student</a></li>
+        </ul>
+    </div>
+    @using (Html.BeginForm("adddetail","home",FormMethod.Post,new {@enctype="multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.StudentId, new { @id = "StudentId" })
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <section class="invoice">
+                        <div class="row invoice-info">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <span style="color: red;">*</span>&nbsp;<label for="lblName">Student Name</label>
+                                    @Html.TextBoxFor(m => m.Name, new { @id = "Name", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <span style="color: red;">*</span>&nbsp;<label for="lblName">Gender</label>
+                                    @Html.TextBoxFor(m => m.Gender, new { @id = "Gender", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <span style="color: red;">*</span>&nbsp;<label for="lblName">Age</label>
+                                    @Html.TextBoxFor(m => m.Age, new { @id = "Age", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <span style="color: red;">*</span>&nbsp;<label for="lblName">Mobile No</label>
+                                    @Html.TextBoxFor(m => m.MobileNo, new { @id = "MobileNo", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <span style="color: red;">*</span>&nbsp;<label for="lblName">Email</label>
+                                    @Html.TextBoxFor(m => m.Email, new { @id = "Mail", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.imagee, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @*<input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);" />*@
+                                    <input type="file" required onchange="return validateFileSize(this)" id="imgInp" name="imgInp" class="form-control">
+
+                                    @Html.ValidationMessageFor(model => model.imagee)
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <span style="color: red;">*</span>&nbsp;<label for="lblName">Address</label>
+                                    @Html.TextBoxFor(m => m.address, new { @id = "address", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                            <!--<div>-->
+                                @*@Html.LabelFor(m => Model.doc, new {@class="control-lavel col-md-2"})*@
+                                <!--upload documents
+                                @Html.TextBox("file", "", new { type = "file" }) <br />-->
+                                @*<input type="submit" value="Upload" />*@
+                                <!--@ViewBag.Message
+                            </div>-->
+                        </div>
+                        <div class="tile-footer">
+                            @*<button class="btn btn-primary" type="submit"  name="Command" value="@ViewBag.buttonName"><i class="fa fa-fw fa-lg fa-check-circle"></i></button>*@
+                            <input type="submit" id="btnSUbmit" class="btn btn-primary" name="Command" value="@ViewBag.buttonName" />
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="reset" class="btn btn-secondary" value="Reset" />
+                            @*<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>*@
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="tile">
+                                    <div class="tile-body">
+                                        <table class="table table-hover table-bordered" id="sampleTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        S.No.
+                                                    </th>
+
+                                                    <th>
+                                                        Name
+                                                    </th>
+                                                    <th>
+                                                        Gender
+                                                    </th>
+
+                                                    <th>
+                                                        Mobile No
+                                                    </th>
+                                                    <th>
+                                                        Email
+                                                    </th>
+                                                    <th>
+                                                        image
+                                                    </th>
+                                                    <th>
+                                                        address
+                                                    </th>
+                                                    @*<th>
+            doc
+        </th>*@
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @{ var sn = 1; }
+                                                @if (ViewBag.list != null)
+                                                {
+                                                    foreach (var item in ViewBag.list)
+                                                    {
+                                                <tr>
+                                                    <td>
+                                                        @(sn++)
+                                                    </td>
+
+                                                    <td>
+                                                        @item.Name
+                                                    </td>
+                                                    <td>
+                                                        @item.Gender
+                                                    </td>
+                                                    <td>
+                                                        @item.MobileNo
+                                                    </td>
+                                                    <td>
+                                                        @item.Email
+                                                    </td>
+                                                    <td>
+                                                        @*<img src="@item.imagee" alt="" height=100 width=200 />*@
+                                                        <img src="@item.imagee" class="img-thumbnail" alt="img" height=100 width=200 />
+
+                                                    </td>
+                                                    <td>
+                                                        @item.address
+                                                    </td>
+                                                    @*<th>
+            <textarea id="contentArea" rows="10" cols="60"></textarea>
+        </th>*@
+                                                    <td style="text-align:center">
+                                                        <a title='Edit' onclick="location.href='@Url.Action("EditStudent", "Home", new { id = @item.StudentId })'">
+                                                            <i class="fa fa-edit btn-sm btn-info">Edit</i>
+                                                        </a>
+                                                        @*<a title='Delete' onclick='StudentDelete(@item.StudentId)' href="#">*@
+                                                        <a title='Delete' onclick="location.href='@Url.Action("StudentDelete", "Home", new { sid = @item.StudentId })'">
+
+                                                            <i class="fa fa-times btn-sm btn-danger">Delete</i>
+                                                        </a>
+                                                    </td>
+
+                                                </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    }
+</main>
+
+<script type="text/javascript">
+    function contentDisp() {
+        $.ajax({
+            url: "file.csv",
+            success: function (data) {
+                $("#contentArea").html(data);
+            }
+        });
+    }
+</script>
+<script>
+    function validateform() {
+        var ret = true;
+        if (document.getElementById("MobileNo").value == "")
+        {
+            document.getElementById("MobileNo").innerText = "MobileNo is required";
+            ret = false;
+        }
+        else
+        {
+            document.getElementById("MobileNo").innerText = "";
+        }
+}
+</script>
