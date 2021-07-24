@@ -1,0 +1,354 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.js" integrity="sha512-HNbo1d4BaJjXh+/e6q4enTyezg5wiXvY3p/9Vzb20NIvkJghZxhzaXeffbdJuuZSxFhJP87ORPadwmU9aN3wSA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js" integrity="sha512-6ORWJX/LrnSjBzwefdNUyLCMTIsGoNP6NftMy2UAm1JBm6PRZCO1d7OHBStWpVFZLO+RerTvqX/Z9mBFfCJZ4A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@*<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>*@
+<nav>
+    <un>
+        <li>@Html.ActionLink("home", "index", "home")</li>
+
+        <li>@Html.ActionLink("adddetail", "adddetail", "home")</li>
+
+    </un>
+</nav>
+
+<!--<body>
+    <script>
+        //var firebaseConfig = {
+        //    apiKey: "AIzaSyCWaQHJiH_bpEWdx9bhx0Gpc7eG1rwIsdQ",
+        //    authDomain: "nbss-e6969.firebaseapp.com",
+        //    databaseURL: "https://nbss-e6969-default-rtdb.firebaseio.com",
+        //    projectId: "nbss-e6969",
+        //    storageBucket: "nbss-e6969.appspot.com",
+        //    messagingSenderId: "622484470737",
+        //    appId: "1:622484470737:web:425ec0b0e8073c6a57fef0",
+        //    measurementId: "G-VD150ZH6RP"
+        //};
+
+        //firebase.initializeApp(firebaseConfig);
+        
+    </script>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->-->
+    <!--@*<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>*@-->
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <!--<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>-->
+
+    <!-- Add Firebase products that you want to use -->
+    <!--<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+</body>-->
+
+
+
+
+
+
+@*<script>
+    //import firebase from "firebase/app";
+    //import "firebase/messaging";
+    var firebaseConfig = {
+        apiKey: "AIzaSyCWaQHJiH_bpEWdx9bhx0Gpc7eG1rwIsdQ",
+        authDomain: "nbss-e6969.firebaseapp.com",
+        databaseURL: "https://nbss-e6969-default-rtdb.firebaseio.com",
+        projectId: "nbss-e6969",
+        storageBucket: "nbss-e6969.appspot.com",
+        messagingSenderId: "622484470737",
+        appId: "1:622484470737:web:425ec0b0e8073c6a57fef0",
+        measurementId: "G-VD150ZH6RP"
+    };
+
+    FileInputStream serviceAccount =
+        new FileInputStream("path/to/serviceAccountKey.json");
+
+    FirebaseOptions options = new FirebaseOptions.Builder()
+        .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+        .setDatabaseUrl("https://nbss-e6969-default-rtdb.firebaseio.com")
+        .build();
+
+    FirebaseApp.initializeApp(options);
+
+   
+    function getMessagingObject() {
+        // [START messaging_get_messaging_object]
+        const messaging = firebase.messaging();
+        // [END messaging_get_messaging_object]
+    }
+
+    function receiveMessage() {
+        const messaging = firebase.messaging();
+        // [START messaging_receive_message]
+        // Handle incoming messages. Called when:
+        // - a message is received while the app has focus
+        // - the user clicks on an app notification created by a service worker
+        //   `messaging.onBackgroundMessage` handler.
+        messaging.onMessage((payload) => {
+            console.log('Message received. ', payload);
+            // ...
+        });
+        // [END messaging_receive_message]
+    }
+
+    function getToken() {
+        const messaging = firebase.messaging();
+        
+
+        // Add the public key generated from the console here.
+        messaging.getToken({ vapidKey: "BFny1Tl7eccP3Ql8m3jIIvx0o9WrubF9gOEIJB3FyTPzXb8e5WtTHzFriZXDYxZ5wqgLWuekcitFDhLlcCG3aDI" });
+        // [START messaging_get_token]
+        // Get registration token. Initially this makes a network call, once retrieved
+        // subsequent calls to getToken will return from cache.
+        messaging.getToken({
+            vapidKey: 'BFny1Tl7eccP3Ql8m3jIIvx0o9WrubF9gOEIJB3FyTPzXb8e5WtTHzFriZXDYxZ5wqgLWuekcitFDhLlcCG3aDI' }).then((currentToken) => {
+    if(currentToken) {
+                // Send the token to your server and update the UI if necessary
+                // ...
+            } else {
+                // Show permission request UI
+                console.log('No registration token available. Request permission to generate one.');
+                // ...
+            }
+        }).catch((err) => {
+            console.log('An error occurred while retrieving token. ', err);
+            // ...
+        });
+        // [END messaging_get_token]
+    }
+
+    function requestPermission() {
+        // [START messaging_request_permission]
+        Notification.requestPermission().then((permission) => {
+            if (permission === 'granted') {
+                console.log('Notification permission granted.');
+                // TODO(developer): Retrieve a registration token for use with FCM.
+                // ...
+            } else {
+                console.log('Unable to get permission to notify.');
+            }
+        });
+        // [END messaging_request_permission]
+    }
+
+    function deleteToken() {
+        const messaging = firebase.messaging();
+
+        // [START messaging_delete_token]
+        messaging.deleteToken().then(() => {
+            console.log('Token deleted.');
+            // ...
+        }).catch((err) => {
+            console.log('Unable to delete token. ', err);
+        });
+        // [END messaging_delete_token]
+    }
+</script>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/firebase-messaging-sw.js"></script>
+    <body>
+        <h2>Firebase Web Push Notification Example</h2>
+
+        <p id="token"></p>
+        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-messaging.js"></script>
+        <script>
+            var firebaseConfig = {
+                    apiKey: "AIzaSyCWaQHJiH_bpEWdx9bhx0Gpc7eG1rwIsdQ",
+                authDomain: "nbss-e6969.firebaseapp.com",
+                databaseURL: "https://nbss-e6969-default-rtdb.firebaseio.com",
+                    projectId: "nbss-e6969",
+                    storageBucket: "nbss-e6969.appspot.com",
+                    messagingSenderId: "622484470737",
+                    appId: "1:622484470737:web:425ec0b0e8073c6a57fef0",
+                    measurementId: "G-VD150ZH6RP"
+                };
+
+            firebase.initializeApp(firebaseConfig);
+            const messaging = firebase.messaging();
+
+            // Add the public key generated from the console here.
+            messaging.getToken({ vapidKey: "BFny1Tl7eccP3Ql8m3jIIvx0o9WrubF9gOEIJB3FyTPzXb8e5WtTHzFriZXDYxZ5wqgLWuekcitFDhLlcCG3aDI" });
+            messaging.getToken({ vapidKey: 'BFny1Tl7eccP3Ql8m3jIIvx0o9WrubF9gOEIJB3FyTPzXb8e5WtTHzFriZXDYxZ5wqgLWuekcitFDhLlcCG3aDI' }).then((currentToken) => {
+        if (currentToken) {
+            // Send the token to your server and update the UI if necessary
+            console.log('registration token available.');
+            // ...
+        } else {
+            // Show permission request UI
+            console.log('No registration token available. Request permission to generate one.');
+            // ...
+        }
+    }).catch((err) => {
+        console.log('An error occurred while retrieving token. ', err);
+        // ...
+    });
+        // Initialize Firebase
+
+            function IntitalizeFireBaseMessaging() {
+                messaging
+                    .requestPermission()
+                    .then(function () {
+                        console.log("Notification Permission");
+                        return messaging.getToken();
+                    })
+                    .then(function (token) {
+                        console.log("Token : " + token);
+                        document.getElementById("token").innerHTML = token;
+                    })
+                    .catch(function (reason) {
+                        console.log(reason);
+                    });
+            }
+
+            messaging.onMessage(function (payload) {
+                console.log(payload);
+                const notificationOption = {
+                    body: payload.notification.body,
+                    icon: payload.notification.icon
+                };
+
+                if (Notification.permission === "granted") {
+                    var notification = new Notification(payload.notification.title, notificationOption);
+
+                    notification.onclick = function (ev) {
+                        ev.preventDefault();
+                        window.open(payload.notification.click_action, '_blank');
+                        notification.close();
+                    }
+                }
+
+            });
+            messaging.onTokenRefresh(function () {
+                messaging.getToken()
+                    .then(function (newtoken) {
+                        console.log("New Token : " + newtoken);
+                    })
+                    .catch(function (reason) {
+                        console.log(reason);
+                    })
+            })
+            IntitalizeFireBaseMessaging();
+        </script>
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="~/Scripts/firebase-messaging-sw.js"></script>*@
+
+<!--<script type="text/javascript">
+    $(document).ready(function () {-->
+@*$.ajax({
+       url: "@Url.Action("StudentDelete", "Home")",
+       type: 'post',
+       datatype: 'json',
+      data: { sid: sid },
+      asycs: false,
+       success: function (isConfirm) {
+       alert("Your Record Deleted Successfully!");
+       location.reload();
+        }
+    });*@
+<!--const settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://bmi.p.rapidapi.com/",
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+                "x-rapidapi-key": "0a0ad5a237msh086b03b00f34ed4p1c404djsn2b60767f8072",
+                "x-rapidapi-host": "bmi.p.rapidapi.com"
+            },
+            "processData": false,
+            "data": {
+                "weight": {
+                    "value": "85.00",
+                    "unit": "kg"
+                },
+                "height": {
+                    "value": "170.00",
+                    "unit": "cm"
+                },
+                "sex": "m",
+                "age": "24"
+            }
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+
+    });
+</script>-->
+
+<h2>Index</h2>
+<!--<body>-->
+<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<!--<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>-->
+<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<!--<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>-->
+<!-- Add Firebase products that you want to use -->
+<!--<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-messaging.js"></script>
+</body>
+<script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyCWaQHJiH_bpEWdx9bhx0Gpc7eG1rwIsdQ",
+        authDomain: "nbss-e6969.firebaseapp.com",
+        projectId: "nbss-e6969",
+        storageBucket: "nbss-e6969.appspot.com",
+        messagingSenderId: "622484470737",
+        appId: "1:622484470737:web:425ec0b0e8073c6a57fef0",
+        measurementId: "G-VD150ZH6RP"
+    };
+    const messaging = firebase.messaging();
+    // Add the public key generated from the console here.
+    messaging.getToken({ vapidKey: "BFny1Tl7eccP3Ql8m3jIIvx0o9WrubF9gOEIJB3FyTPzXb8e5WtTHzFriZXDYxZ5wqgLWuekcitFDhLlcCG3aDI" });
+    // Initialize Firebase
+
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+</script>
+<body>
+
+
+</body>-->
